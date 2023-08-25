@@ -31,6 +31,7 @@ class DrawingPanel extends JPanel {
                 
                 g.drawRect(x, y, squareSize, squareSize);
                 g.drawString(String.valueOf(number), x + squareSize / 2, y + squareSize / 2);
+                //gkgkgk
             }
         }
     }
