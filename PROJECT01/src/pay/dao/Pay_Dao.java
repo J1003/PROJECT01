@@ -39,10 +39,12 @@ public class Pay_Dao {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
             // 2. SQL 문 실행
-            String sql = "INSERT INTO PAYMENT (PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, RESERVATION_ID) "
+            String sql = "INSERT INTO PAYMENT (PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, BOOK_ID) "
                     + "VALUES (?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?)";
             pstmt = conn.prepareStatement(sql);
-
+            
+            
+            
             rs = pstmt.executeQuery();
             
             
@@ -54,7 +56,7 @@ public class Pay_Dao {
                         rs.getString("PAYMENT_METHOD"),
                         rs.getInt("TOTAL_PRICE"),
                         rs.getString("PAYMENT_DATE"),
-                        rs.getInt("RESERVATION_ID"));
+                        rs.getInt("BOOK_ID"));
                 list.add(vo);
             }
 
@@ -75,7 +77,7 @@ public class Pay_Dao {
     	try {
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 			
-			String sql = "INSERT INTO PAYMENT (PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, RESERVATION_ID) "
+			String sql = "INSERT INTO PAYMENT (PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, BOOK_ID) "
 			           + "VALUES (?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?)";
 			
 			pstmt = conn.prepareStatement(sql.toString());
@@ -85,7 +87,7 @@ public class Pay_Dao {
 			pstmt.setString(3, vo.getPayment_method());
 			pstmt.setInt(4, vo.getTotal_price());
 			pstmt.setString(5, vo.getPayment_date());
-			pstmt.setInt(6, vo.getReservation_id());
+			pstmt.setInt(6, vo.getBook_id());
 			
 			result = pstmt.executeUpdate();
 			
@@ -110,7 +112,7 @@ public class Pay_Dao {
 			sql.append("     , PAYMENT_METHOD = ? ");
 			sql.append("     , TOTAL_PRICE = ? ");
 			sql.append("     , PAYMENT_DATE = ? ");
-			sql.append("     , RESERVATION_ID = ? ");
+			sql.append("     , BOOK_ID = ? ");
 			sql.append(" WHERE ID = ? ");
 			
 			
@@ -121,7 +123,7 @@ public class Pay_Dao {
 			pstmt.setString(3, vo.getPayment_method());
 			pstmt.setInt(4, vo.getTotal_price());
 			pstmt.setString(5, vo.getPayment_date());
-			pstmt.setInt(6, vo.getReservation_id());
+			pstmt.setInt(6, vo.getBook_id());
 			
 			result = pstmt.executeUpdate();
 			

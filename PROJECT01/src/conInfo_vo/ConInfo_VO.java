@@ -10,9 +10,10 @@ public class ConInfo_VO {
     private String concert_date;
     private String location ;
     private String time;
+    private int hall_id;
 	
     public ConInfo_VO(int concert_id, String title, String genre, int running_time, String concert_date,
-			String location, String time) {
+			String location, String time, int hall_id) {
 	super();
 	this.concert_id = concert_id;
 	this.title = title;
@@ -21,6 +22,7 @@ public class ConInfo_VO {
 	this.concert_date = concert_date;
 	this.location = location;
 	this.time = time;
+	this.hall_id = hall_id;
 	}
 
 	public int getConcert_id() {
@@ -78,11 +80,22 @@ public class ConInfo_VO {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
+
+	public int getHall_id() {
+		return hall_id;
+	}
+
+	public void setHall_id(int hall_id) {
+		this.hall_id = hall_id;
+	}
 
 	@Override
 	public String toString() {
 		return "ConInfo_VO [concert_id=" + concert_id + ", title=" + title + ", genre=" + genre + ", running_time="
-				+ running_time + ", concert_date=" + concert_date + ", location=" + location + ", time=" + time + "]";
+				+ running_time + ", concert_date=" + concert_date + ", location=" + location + ", time=" + time
+				+ ", hall_id=" + hall_id + "]";
 	}
+
   	
 }

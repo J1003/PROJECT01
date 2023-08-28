@@ -7,18 +7,18 @@ public class Pay_VO {
 	private String payment_method;
 	private int total_price;
 	private String payment_date;
-	private int reservation_id;
+	private int Book_id;
 	
 	
 	public Pay_VO(int payment_id, String user_id, String payment_method, int total_price, String payment_date,
-				  int reservation_id) {
+				  int Book_id) {
 		super();
 		this.payment_id = payment_id;
 		this.user_id = user_id;
 		this.payment_method = payment_method;
 		this.total_price = total_price;
 		this.payment_date = payment_date;
-		this.reservation_id = reservation_id;
+		this.Book_id = Book_id;
 	}
 
 
@@ -72,21 +72,21 @@ public class Pay_VO {
 	}
 
 
-	public int getReservation_id() {
-		return reservation_id;
+	public int getBook_id() {
+		return Book_id;
 	}
 
 
-	public void setReservation_id(int reservation_id) {
-		this.reservation_id = reservation_id;
+	public void setBook_id(int Book_id) {
+		this.Book_id = Book_id;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Pay_VO [payment_id=" + payment_id + ", user_id=" + user_id + ", payment_method=" + payment_method
-				+ ", total_price=" + total_price + ", payment_date=" + payment_date + ", reservation_id="
-				+ reservation_id + "]";
+				+ ", total_price=" + total_price + ", payment_date=" + payment_date + ", Book_id="
+				+ Book_id + "]";
 	}
 
 	
