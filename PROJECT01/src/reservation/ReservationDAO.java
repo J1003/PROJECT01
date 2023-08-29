@@ -26,17 +26,19 @@ public class ReservationDAO {
 			
 			//3. Statement 문 실행(SQL 문 실행)
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT book_id, user_id, concert_id, hall_id, "
-					+ "count, seat, totalPrice, paymentMethod, createDate, status");
+			sb.append("SELECT book_id, user_id, concert_id, hall_id,  ");
+			sb.append("count, seat, "
+					+ "totalPrice, paymentMethod, createDate, status");
 			sb.append("  FROM RESERVATION ");
 			sb.append(" ORDER BY BOOK_ID ");
+			
 			
 			pstmt = conn.prepareStatement(sb.toString());
 			
 			rs = pstmt.executeQuery();
-			
+
 			list = new ArrayList<ReservationVO>();
-			
+
 			//4. SQL 실행 결과에 대한 처리
 			//   - SELECT : 조회(검색) 데이터 결과 값에 대한 처리
 			while (rs.next()) {
@@ -53,7 +55,7 @@ public class ReservationDAO {
 						rs.getString("status"));
 				list.add(vo);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -63,6 +65,8 @@ public class ReservationDAO {
 		
 		return list;
 	}
+	
+
 	
 	public ReservationVO selectOne(String id) {
 		ReservationVO vo = null;
@@ -75,7 +79,7 @@ public class ReservationDAO {
 			
 			//3. Statement 문 실행(SQL 문 실행)
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT book_id, user_id, concert_id, hall_id, "
+			sb.append("SELECT book_id, user_id, concert_id, hall_id,  "
 					+ "count, seat, totalPrice, paymentMethod, createDate, status ");
 			sb.append("  FROM RESERVATION ");
 			sb.append(" WHERE book_id = ? ");
@@ -159,6 +163,9 @@ public class ReservationDAO {
 		
 		return result;
 	}
+	
+	
+	
 	//썜--------------------------------
 //	public int insert(MemberVO vo) {
 //		int result = 0;
@@ -206,6 +213,7 @@ public class ReservationDAO {
 				sql.append("   SET user_id = ? ");
 				sql.append("     , concert_id = ? ");
 				sql.append("     , hall_id = ? ");
+				sql.append("     , seat_id = ? ");
 				sql.append("     , count = ? ");
 				sql.append("     , seat = ? ");
 				sql.append("     , totalPrice = ? ");
@@ -230,6 +238,7 @@ public class ReservationDAO {
 				pstmt.setString(i++, vo.getUser_id());
 				pstmt.setInt(i++, vo.getConcert_id());
 				pstmt.setInt(i++, vo.getHall_id());
+				pstmt.setInt(i++, vo.getSeat_id());
 				pstmt.setInt(i++, vo.getCount());
 				pstmt.setString(i++, vo.getSeat());
 				pstmt.setInt(i++, vo.getTotalprice());
@@ -277,3 +286,4 @@ public class ReservationDAO {
 	
 		
 }
+

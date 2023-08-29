@@ -10,7 +10,7 @@ import java.util.List;
 
 import pay.vo.Pay_VO;
 
-public class Pay_Dao {
+public class PayDao {
 
 	private static final String DRIVER = "oracle.jdbc.OracleDriver";
     private static final String URL = "jdbc:oracle:thin:@192.168.18.6:1521:xe";

@@ -1,4 +1,4 @@
-package Project1;
+package project1;
 
 public class Project1_Test {
 
@@ -6,11 +6,12 @@ public class Project1_Test {
 
 
 
-		new Project1().startProject1(1, null);
 
+		new Project1().startProject1();
+
+		
 		
 		
 	}
 
 }
-

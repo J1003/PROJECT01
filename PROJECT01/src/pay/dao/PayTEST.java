@@ -6,9 +6,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import pay.vo.Pay_VO;
 
-public class Pay_TEST {
+public class PayTEST {
     public static void main(String[] args) {
-        Pay_Dao payDao = new Pay_Dao();
+        PayDao payDao = new PayDao();
         
         // SELECTALL
         List<Pay_VO> payments = payDao.selectAll();

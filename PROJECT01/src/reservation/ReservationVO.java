@@ -7,11 +7,15 @@ public class ReservationVO {
 	private int concert_id;
 	private int hall_id;
 	private int count;
-	private String seat;
+	private String seats;
 	private int totalprice;
 	private String paymentmethod;
 	private String createDate;
 	private String status;
+	private int seat_id;
+	private String seat;
+
+
 	
 	//생성자-------------------------------------------------------------
 	public ReservationVO() {}
@@ -31,7 +35,17 @@ public class ReservationVO {
 		this.status = status; //기본은 정상
 	}
 	
+	
 	//메소드-------------------------------------------------------------
+	
+	public int getSeat_id() {
+		return seat_id;
+	}
+
+	public void setSeat_id(int seat_id) {
+		this.seat_id = seat_id;
+	}
+	
 	public String getCreateDate() {
 		return createDate;
 	}
@@ -84,7 +98,7 @@ public class ReservationVO {
 		return seat;
 	}
 
-	public void setSeat(String seat) {
+	public void setSeats(String seat) {
 		this.seat = seat;
 	}
 
@@ -115,7 +129,7 @@ public class ReservationVO {
 	@Override
 	public String toString() {
 		return "ReservationVO [book_id=" + book_id + ", user_id=" + user_id + 
-				", concert_id=" + concert_id + ", hall_id=" + hall_id + 
+				", concert_id=" + concert_id + ", hall_id=" + hall_id + ", seat_id=" + seat_id +
 				", count=" + count + ", seat=" + seat + ", totalprice=" + totalprice + 
 				", paymentmethod=" + paymentmethod + ", status=" + status + "]";
 	}

@@ -1,6 +1,6 @@
 package conInfo_vo;
 
-public class ConInfo_VO {
+public class ConInfoVO {
 	
 	
 	private int concert_id ;
@@ -12,7 +12,7 @@ public class ConInfo_VO {
     private String time;
     private int hall_id;
 	
-    public ConInfo_VO(int concert_id, String title, String genre, int running_time, String concert_date,
+    public ConInfoVO(int concert_id, String title, String genre, int running_time, String concert_date,
 			String location, String time, int hall_id) {
 	super();
 	this.concert_id = concert_id;

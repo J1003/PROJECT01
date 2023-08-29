@@ -4,13 +4,13 @@ package coninfo.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import conInfo_vo.ConInfo_VO;
+import conInfo_vo.ConInfoVO;
 
-public class ConInfo_Test {
+public class ConInfoTest {
 	public static void main(String[] args) {
 
         // Insert
-        ConInfo_DAO dao = new ConInfo_DAO();
+        ConInfoDAO dao = new ConInfoDAO();
         LocalDate nowDate = LocalDate.now();
         
         // Calculate the next Friday
@@ -35,7 +35,7 @@ public class ConInfo_Test {
         LocalDate nextNextNextSunday = nextNextNextFriday.plusDays(2);
         
         
-        ConInfo_VO[] concertInfos = {
+        ConInfoVO[] concertInfos = {
 //                new ConInfo_VO(1, "예술의전당 여름음악축제", "클래식", 120, nextFriday.toString(), "", "19:00"),
 //                new ConInfo_VO(2, "조성진 피아노 리사이틀", "클래식", 100, nextSaturday.toString(), "", "19:30"),
 //                new ConInfo_VO(3, "유니버설발레단<돈키호테>", "발레", 90, nextSunday.toString(), "", "20:00"),
@@ -62,7 +62,7 @@ public class ConInfo_Test {
         
             System.out.println("---- insert(vo) ----");
 
-            for (ConInfo_VO concertInfo : concertInfos) {
+            for (ConInfoVO concertInfo : concertInfos) {
                 int result = dao.insert(concertInfo);
                 System.out.println("입력결과 : " + result);
             }
@@ -70,10 +70,10 @@ public class ConInfo_Test {
             System.out.println("---- insert(vo) completed ----");
             
             // 출력하는 부분 추가
-            List<ConInfo_VO> concertList = dao.selectAll();
+            List<ConInfoVO> concertList = dao.selectAll();
             System.out.println("<콘서트 INFORMATION>");
             System.out.println("번호\t콘서트명\t\t\t\t장르\t러닝타임\t날짜\t\t\t장소\t\t시간\t\t홀아이디");
-            for (ConInfo_VO vo : concertList) {
+            for (ConInfoVO vo : concertList) {
                 System.out.println(String.format("%-1s\t%-24s\t%-5s\t%-5s\t%-10s\t%-20s\t%-10s\t%-10s",
                     vo.getConcert_id(), vo.getTitle(), vo.getGenre(),
                     vo.getRunning_time(), vo.getConcert_date().substring(0, 10), vo.getLocation(),
@@ -81,16 +81,43 @@ public class ConInfo_Test {
             } 
             System.out.println("---------------------------------------------------------------");
 
-    
-//            System.out.println("---- update -----");
-//            int updateResult = conInfoDAO.update(selectedConcert);
-//            System.out.println("updateResult 값: " + updateResult);
-//            if (updateResult > 0) {
-//                System.out.println("콘서트 정보가 수정되었습니다.");
-//            } else {
-//                System.out.println("콘서트 정보 수정에 실패하였습니다.");
-//            }
-//            
+            
+            
+
+            
+            
+            System.out.println("---- update -----");
+            String concert_Info = "1"; // 수정할 콘서트의 CONCERT_ID
+            // [테스트] 수정된 콘서트 정보를 출력해보기
+            ConInfoVO selectedConcert = dao.selectOne(concert_Info); // 수정할 콘서트 번호
+            if (selectedConcert != null) {
+                System.out.println("수정 전 콘서트 정보:");
+                System.out.println(selectedConcert);
+
+                // [테스트] 새로운 값을 설정하여 수정해보기
+                selectedConcert.setTitle("예술의전당 여름음악축제");
+                selectedConcert.setGenre("클래식");
+                // ... (다른 필드도 필요에 따라 수정)
+
+                // [테스트] 수정된 콘서트 정보를 업데이트하기
+                int updateResult = dao.update(selectedConcert);
+                System.out.println("Update result: " + updateResult);
+                if (updateResult > 0) {
+                    System.out.println("콘서트 정보가 수정되었습니다.");
+                } else {
+                    System.out.println("콘서트 정보 수정에 실패하였습니다.");
+                }
+
+                // [테스트] 수정 후 콘서트 정보 출력해보기
+                selectedConcert = dao.selectOne(concert_Info);
+                System.out.println("수정 후 콘서트 정보:");
+                System.out.println(selectedConcert);
+            } else {
+                System.out.println("해당 번호의 콘서트 정보가 없습니다.");
+            }
+
+            
+            
             
             
         // Delete
