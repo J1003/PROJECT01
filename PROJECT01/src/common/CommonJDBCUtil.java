@@ -2,6 +2,7 @@ package common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,21 +27,19 @@ public class CommonJDBCUtil {
 		return null;
 	}
 	
-	public static void close(Connection conn, Statement stmt, 
+	public static void close(Connection conn, PreparedStatement pstmt, 
 			ResultSet rs) {
-		//5. 클로징 처리에 의한 자원 반납
 		try {
 			if (rs != null) rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		close(conn, stmt);
+		close(conn, pstmt);
 	}
 	
-	public static void close(Connection conn, Statement stmt) {
-		//5. 클로징 처리에 의한 자원 반납
+	public static void close(Connection conn, PreparedStatement pstmt) {
 		try {
-			if (stmt != null) stmt.close();
+			if (pstmt != null) pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

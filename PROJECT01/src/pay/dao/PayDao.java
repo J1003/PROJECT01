@@ -39,11 +39,8 @@ public class PayDao {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
             // 2. SQL 문 실행
-            String sql = "INSERT INTO PAYMENT (PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, BOOK_ID) "
-                    + "VALUES (?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), ?)";
+            String sql = "SELECT PAYMENT_ID, USER_ID, PAYMENT_METHOD, TOTAL_PRICE, PAYMENT_DATE, BOOK_ID FROM PAYMENT";
             pstmt = conn.prepareStatement(sql);
-            
-            
             
             rs = pstmt.executeQuery();
             
@@ -113,7 +110,7 @@ public class PayDao {
 			sql.append("     , TOTAL_PRICE = ? ");
 			sql.append("     , PAYMENT_DATE = ? ");
 			sql.append("     , BOOK_ID = ? ");
-			sql.append(" WHERE ID = ? ");
+			sql.append(" WHERE PAYMENT_ID = ? ");
 			
 			
 			pstmt = conn.prepareStatement(sql.toString());

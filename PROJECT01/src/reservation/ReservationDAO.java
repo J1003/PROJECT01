@@ -26,9 +26,9 @@ public class ReservationDAO {
 			
 			//3. Statement 문 실행(SQL 문 실행)
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT book_id, user_id, concert_id, hall_id,  ");
+			sb.append("SELECT book_id, user_id, concert_id, hall_id, phonenumber, ");
 			sb.append("count, seat, "
-					+ "totalPrice, paymentMethod, createDate, status");
+					+ "price, paymentMethod, howtoget, createDate, status");
 			sb.append("  FROM RESERVATION ");
 			sb.append(" ORDER BY BOOK_ID ");
 			
@@ -47,10 +47,12 @@ public class ReservationDAO {
 						rs.getString("user_id"), 
 						rs.getInt("concert_id"), 
 						rs.getInt("hall_id"), 
+						rs.getString("phonenumber"), 
 						rs.getInt("count"),
 						rs.getString("seat"),
-						rs.getInt("totalprice"),
+						rs.getString("price"),
 						rs.getString("paymentmethod"),
+						rs.getString("howtoget"),
 						rs.getString("createDate"),
 						rs.getString("status"));
 				list.add(vo);
@@ -79,8 +81,8 @@ public class ReservationDAO {
 			
 			//3. Statement 문 실행(SQL 문 실행)
 			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT book_id, user_id, concert_id, hall_id,  "
-					+ "count, seat, totalPrice, paymentMethod, createDate, status ");
+			sb.append("SELECT book_id, user_id, concert_id, hall_id, phonenumber "
+					+ "count, seat, price, paymentMethod, howtoget, createDate, status ");
 			sb.append("  FROM RESERVATION ");
 			sb.append(" WHERE book_id = ? ");
 			
@@ -98,10 +100,12 @@ public class ReservationDAO {
 						rs.getString("user_id"), 
 						rs.getInt("concert_id"), 
 						rs.getInt("hall_id"), 
+						rs.getString("phonenumber"), 
 						rs.getInt("count"),
 						rs.getString("seat"),
-						rs.getInt("totalprice"),
+						rs.getString("price"),
 						rs.getString("paymentmethod"),
+						rs.getString("howtoget"),
 						rs.getString("createDate"),
 						rs.getString("status"));
 			}
@@ -128,13 +132,13 @@ public class ReservationDAO {
 			//3. Statement 문 실행(SQL 문 실행)
 			StringBuilder sql = new StringBuilder();
 			sql.append("INSERT INTO RESERVATION ");
-			sql.append("(book_id, user_id, concert_id, hall_id, count, seat, "
-					+ "totalPrice, paymentMethod, createDate, status) ");
+			sql.append("(book_id, user_id, concert_id, hall_id, phonenumber, count, seat, "
+					+ "price, paymentMethod, howtoget, createDate, status) ");
 			sql.append("VALUES (?, "
 					+ "(SELECT USER_ID FROM USERS  WHERE USER_ID = ?), "
 					+ "(SELECT CONCERT_ID FROM CONCERT_INFO WHERE CONCERT_ID = ?), "
 					+ "(SELECT HALL_ID FROM HALL_INFO WHERE HALL_ID = ?), "
-					+ "?, ?, ?, ?, ?, ?) ");
+					+ "?, ?, ?, ?, ?, ?, ?, ?) ");
 			
 			pstmt = conn.prepareStatement(sql.toString());
 			
@@ -143,10 +147,12 @@ public class ReservationDAO {
 			pstmt.setString(i++, vo.getUser_id());
 			pstmt.setInt(i++, vo.getConcert_id());
 			pstmt.setInt(i++, vo.getHall_id());
+			pstmt.setString(i++, vo.getPhonenumber());
 			pstmt.setInt(i++, vo.getCount());
 			pstmt.setString(i++, vo.getSeat());
-			pstmt.setInt(i++, vo.getTotalprice());
+			pstmt.setString(i++, vo.getPrice());
 			pstmt.setString(i++, vo.getPaymentmethod());
+			pstmt.setString(i++, vo.getHowtoget());
 			pstmt.setString(i++, vo.getCreateDate());
 			pstmt.setString(i++, vo.getStatus());
 	
@@ -163,42 +169,7 @@ public class ReservationDAO {
 		
 		return result;
 	}
-	
-	
-	
-	//썜--------------------------------
-//	public int insert(MemberVO vo) {
-//		int result = 0;
-//		
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		
-//		try {
-//			conn = CommonJDBCUtil.getConnection();
-//			
-//			StringBuilder sql = new StringBuilder();
-//			sql.append("INSERT INTO MEMBER ");
-//			sql.append("       (ID, NAME, PASSWORD, PHONE, ADDRESS) ");
-//			sql.append("VALUES (?, ?, ?, ?, ?) ");
-//			
-//			pstmt = conn.prepareStatement(sql.toString());
-//			
-//			pstmt.setString(1, vo.getId());
-//			pstmt.setString(2, vo.getName());
-//			pstmt.setString(3, vo.getPassword());
-//			pstmt.setString(4, vo.getPhone());
-//			pstmt.setString(5, vo.getAddress());
-//			
-//			result = pstmt.executeUpdate();
-//			
-//		} catch (Exception e) {
-//			result = -1;
-//			//e.printStackTrace();
-//		}
-//		
-//		return result;
-//	}
-	
+
 	//UPDATE : VO 데이터를 받아서 수정 - update : int
 		public int update(ReservationVO vo) {
 			int result = 0;
@@ -213,11 +184,12 @@ public class ReservationDAO {
 				sql.append("   SET user_id = ? ");
 				sql.append("     , concert_id = ? ");
 				sql.append("     , hall_id = ? ");
-				sql.append("     , seat_id = ? ");
+				sql.append("     , phonenumber = ? ");
 				sql.append("     , count = ? ");
 				sql.append("     , seat = ? ");
-				sql.append("     , totalPrice = ? ");
+				sql.append("     , price = ? ");
 				sql.append("     , paymentMethod = ? ");
+				sql.append("     , howtoget = ? ");
 				sql.append("     , createDate = ? ");
 				sql.append("     , status = ? ");
 				sql.append(" WHERE book_id = ? ");
@@ -238,11 +210,12 @@ public class ReservationDAO {
 				pstmt.setString(i++, vo.getUser_id());
 				pstmt.setInt(i++, vo.getConcert_id());
 				pstmt.setInt(i++, vo.getHall_id());
-				pstmt.setInt(i++, vo.getSeat_id());
+				pstmt.setString(i++, vo.getPhonenumber());
 				pstmt.setInt(i++, vo.getCount());
 				pstmt.setString(i++, vo.getSeat());
-				pstmt.setInt(i++, vo.getTotalprice());
+				pstmt.setString(i++, vo.getPrice());
 				pstmt.setString(i++, vo.getPaymentmethod());
+				pstmt.setString(i++, vo.getHowtoget());
 				pstmt.setString(i++, vo.getCreateDate());
 				pstmt.setString(i++, vo.getStatus());
 				pstmt.setInt(i++, vo.getBook_id());

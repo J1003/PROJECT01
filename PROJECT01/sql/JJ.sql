@@ -1,3 +1,5 @@
+----------- 콘서트 데이터 입력
+
 SELECT * FROM CONCERT_INFO;
 
 
@@ -53,3 +55,31 @@ WHERE H.HALL_ID = 8;
 
 
 DELETE FROM concert_info;
+
+
+
+
+------ 결제하기 데이터 입력
+
+-- 1 사용자 정보와 함께 PAYMENT 테이블에 데이터 삽입
+INSERT INTO PAYMENT (payment_id, user_id, payment_method, total_price, payment_date, book_id)
+VALUES (1, 'GKAJT', '카드결제', 20000, '2023-08-30', 123456);
+
+-- 2
+INSERT INTO PAYMENT (payment_id, user_id, payment_method, total_price, payment_date, book_id)
+VALUES (2, 'WNAJT', '계좌이체', 15000, '2023-08-31', 789012);
+
+-- 3
+INSERT INTO PAYMENT (payment_id, user_id, payment_method, total_price, payment_date, book_id)
+VALUES (3, 'WKDWKDAOS', '카드결제', 30000, '2023-09-01', 345678);
+
+-- 4
+INSERT INTO PAYMENT (payment_id, user_id, payment_method, total_price, payment_date, book_id)
+VALUES (4, 'RNTDLDI', '계좌이체', 25000, '2023-09-02', 567890);
+-- 5
+INSERT INTO PAYMENT (payment_id, user_id, payment_method, total_price, payment_date, book_id)
+VALUES (5, 'jiwon', '카드결제', 100000, '2023-09-03', 234567);
+
+COMMIT;
+
+DELETE FROM PAYMENT;

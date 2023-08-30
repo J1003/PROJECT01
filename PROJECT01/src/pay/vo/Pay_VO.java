@@ -22,6 +22,9 @@ public class Pay_VO {
 	}
 
 
+	
+
+
 	public int getPayment_id() {
 		return payment_id;
 	}

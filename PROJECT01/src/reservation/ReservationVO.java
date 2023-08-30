@@ -8,29 +8,33 @@ public class ReservationVO {
 	private int hall_id;
 	private int count;
 	private String seats;
-	private int totalprice;
+	private String price;
 	private String paymentmethod;
 	private String createDate;
 	private String status;
 	private int seat_id;
 	private String seat;
+	private String phonenumber;
+	private String howtoget;
 
 
 	
 	//생성자-------------------------------------------------------------
 	public ReservationVO() {}
 
-	public ReservationVO(int book_id, String user_id, int concert_id, int hall_id, int count,
-			String seat, int totalprice, String paymentmethod, String createDate, String status) {
+	public ReservationVO(int book_id, String user_id, int concert_id, int hall_id, String phonenumber, int count,
+			String seat, String price, String paymentmethod, String howtoget, String createDate, String status) {
 		super();
 		this.book_id = book_id; //자동지정
 		this.user_id = user_id; //USERS 테이블에서 가져오기
 		this.concert_id = concert_id; //CONCERT_INFO 테이블에서 가져오기
 		this.hall_id = hall_id; //HALL_INFO 테이블에서 가져오기
+		this.phonenumber = phonenumber; //HALL_INFO 테이블에서 가져오기
 		this.count = count; //예매하기 정보
 		this.seat = seat; //예매하기 정보
-		this.totalprice = totalprice; //예매하기 정보
+		this.price = price; //예매하기 정보
 		this.paymentmethod = paymentmethod; //예매하기 정보
+		this.howtoget = howtoget; //예매하기 정보
 		this.createDate = createDate; //예매하기 정보
 		this.status = status; //기본은 정상
 	}
@@ -38,6 +42,34 @@ public class ReservationVO {
 	
 	//메소드-------------------------------------------------------------
 	
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getHowtoget() {
+		return howtoget;
+	}
+
+	public void setHowtoget(String howtoget) {
+		this.howtoget = howtoget;
+	}
+
+	public void setSeat(String seat) {
+		this.seat = seat;
+	}
+
 	public int getSeat_id() {
 		return seat_id;
 	}
@@ -102,14 +134,6 @@ public class ReservationVO {
 		this.seat = seat;
 	}
 
-	public int getTotalprice() {
-		return totalprice;
-	}
-
-	public void setTotalprice(int totalprice) {
-		this.totalprice = totalprice;
-	}
-
 	public String getPaymentmethod() {
 		return paymentmethod;
 	}
@@ -129,9 +153,9 @@ public class ReservationVO {
 	@Override
 	public String toString() {
 		return "ReservationVO [book_id=" + book_id + ", user_id=" + user_id + 
-				", concert_id=" + concert_id + ", hall_id=" + hall_id + ", seat_id=" + seat_id +
-				", count=" + count + ", seat=" + seat + ", totalprice=" + totalprice + 
-				", paymentmethod=" + paymentmethod + ", status=" + status + "]";
+				", concert_id=" + concert_id + ", hall_id=" + hall_id + ", phonenumber" + phonenumber +
+				", count=" + count + ", seat=" + seat + ", price=" + price + 
+				", paymentmethod=" + paymentmethod + ", howtoget=" + howtoget + ", createDate=" + createDate + ", status=" + status + "]";
 	}
 		
 	

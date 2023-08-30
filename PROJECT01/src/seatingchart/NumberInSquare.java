@@ -1,4 +1,4 @@
-package sql.connect;
+package seatingchart;
 
 import javax.swing.*;
 import java.awt.*;
